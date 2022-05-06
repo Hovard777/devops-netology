@@ -1,9 +1,7 @@
-# devops-netology
+# devops-netology/terraform
 Netology devops education
 
-Redaction 1
-
-Благодаря .gitignore будкт проигнорированы:
+Благодаря .gitignore будут проигнорированы:
  - локальные дирректории 
  - tfstate файлы
  - логи падений(crash)
