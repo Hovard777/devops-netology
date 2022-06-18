@@ -1,5 +1,9 @@
 1. Найдите полный хеш и комментарий коммита, хеш которого начинается на aefea.
+command:
+git log |grep aefea
+git show aefead2207ef7e2aa5dc81a34aedf0cad4c32545
 
+Result:
 commit aefead2207ef7e2aa5dc81a34aedf0cad4c32545
 Author: Alisdair McDiarmid <alisdair@users.noreply.github.com>
 Date:   Thu Jun 18 10:29:58 2020 -0400
@@ -20,13 +24,25 @@ index 86d70e3e0..588d807b1 100644
  * command/apply: Fix bug which caused Terraform to silently exit on Windows when using absolute plan path ([#25233](https://github.com/hashicorp/terraform/issues/25233))
 
 2.Какому тегу соответствует коммит 85024d3?
+command:
+git show  85024d3
+
+Result:
 tag: v0.12.23
 
 3. Сколько родителей у коммита b8d720? Напишите их хеши.
+command:
+git cat-file -p b8d720
+
+Result:
 parent 56cd7859e05c36c06b56d013b55a252d0bb7e158
 parent 9ea88f22fc6269854151c571162c5bcf958bee2b
 
 4. Перечислите хеши и комментарии всех коммитов которые были сделаны между тегами v0.12.23 и v0.12.24.
+command:
+git log v0.12.23..v0.12.24 --oneline
+
+Result:
 33ff1c03b (tag: v0.12.24) v0.12.24
 b14b74c49 [Website] vmc provider links
 3f235065b Update CHANGELOG.md
@@ -39,11 +55,27 @@ dd01a3507 Update CHANGELOG.md
 225466bc3 Cleanup after v0.12.23 release
 
 5. Найдите коммит в котором была создана функция func providerSource, ее определение в коде выглядит так func providerSource(...) (вместо троеточего перечислены аргументы).
-commit 8c928e83589d90a031f811fae52a81be7153e82f
+command:
+git grep -p "func providerSource"
+git log -L :'func providerSource':provider_source.go
+
+Result:
+commit 8c928e83589d90a031f811fae52a81be7153e82f - the first mention of the function
+commit 5af1e6234ab6da412fb8637393c5a17a1b293663 - the function is completely defined
 
 6. Найдите все коммиты в которых была изменена функция globalPluginDirs.
+command:
+git grep -p globalPluginDirs
+git log -L :globalPluginDirs:commands.go
+git log -L :'globalPluginDirs':plugins.go
+
+Result:
 commit 8364383c359a6b738a436d1b7745ccdce178df47 - add in plugins.go
 
 7.Кто автор функции synchronizedWriters?
+command:
+git log -S 'synchronizedWriters(' --pretty=format:"%an %ad" --reverse --date=short
+
+Result:
 Martin Atkins
 
