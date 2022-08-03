@@ -8,7 +8,7 @@ Description=Node Exporter
 User=vagrant
 Group=vagrant
 Type=simple
-ExecStart=/usr/local/bin/node_exporter
+ExecStart=/usr/local/bin/node_exporter $MYVAR
 EnvironmentFile=/etc/default/node_exporter_cfg
 Restart=on-failure
 
