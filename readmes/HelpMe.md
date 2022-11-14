@@ -1,3 +1,5 @@
+для задания 5-5 docker swarm
+
 1.Авторизуемся в Yandex.Cloud.  
 ```commandline
 ivan@ivan-virtual-machine:~/packer$ yc init 
