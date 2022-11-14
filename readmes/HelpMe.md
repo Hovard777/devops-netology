@@ -300,7 +300,7 @@ terraform apply
 5.Создаём Docker Swarm кластер из виртуальных машин, созданных на предыдущем шаге.  
 ansible-playbook -i ./inventory ./swarm-deploy-cluster.yml 
 6.Запускаем деплой стека приложений.  
-
+sync playbook
 7.Проводим стресс тест Docker Swarm кластера.  
-
+stack playbook
 8.Удаляем всё, чтобы не тратить деньги!
