@@ -11,16 +11,16 @@ Pick desired action:
  [4] Switch to and re-initialize existing profile: 'netology-ifebres'
  [5] Switch to and re-initialize existing profile: 'sa-profile-terraform'
 Please enter your numeric choice: 4
-Please go to https://oauth.yandex.ru/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb in order to obtain OAuth token.
+Please go to https://oauth.yandex.ru/authorize?response_type=token&client_id=1a6990a*********a7bec2fb in order to obtain OAuth token.
 
 Please enter OAuth token: [y0_AgAAAAAAnCt******************************M9_vjY876EfTJU] 
-You have one cloud available: 'netology-cloud-febres' (id = b1grp5cvssfkb323pqkm). It is going to be used by default.
+You have one cloud available: 'netology-cloud-febres' (id = b1grp5c*****b323pqkm). It is going to be used by default.
 Please choose folder to use:
- [1] default (id = b1gr13q2de10ct1g0t8q)
+ [1] default (id = b1gr1****e10ct1g0t8q)
  [2] Create a new folder
 Please enter your numeric choice: 2
 Please enter a folder name: netology-swarm
-Your current folder has been set to 'netology-swarm' (id = b1g66m6nub69utu4gsqs).
+Your current folder has been set to 'netology-swarm' (id = b1g6****utu4gsqs).
 Do you want to configure a default Compute zone? [Y/n] y
 Which zone do you want to use as a profile default?
  [1] ru-central1-a
@@ -38,8 +38,8 @@ You can install it by running the following command in your shell:
 2.Создаём сеть и подсеть, чтобы собрать образ ОС с помощью Packer и запускаем сборку образа.  
 ```commandline
 ivan@ivan-virtual-machine:~/packer$ yc vpc network create --name net --labels my-label=netology --description "my network first"
-id: enp98mp53o1256icnbp3
-folder_id: b1g66m6nub69utu4gsqs
+id: enp98mp***icnbp3
+folder_id: b1g6****9utu4gsqs
 created_at: "2022-11-14T19:37:17Z"
 name: net
 description: my network first
@@ -47,12 +47,12 @@ labels:
   my-label: netology
 
 ivan@ivan-virtual-machine:~/packer$ yc vpc subnet create --name my-subnet-a --zone ru-central1-a --range 10.1.2.0/24 --network-name net --description "my subnet first"
-id: e9bv2k91jb7cugg3f296
-folder_id: b1g66m6nub69utu4gsqs
+id: e9bv2k***g3f296
+folder_id: b1g66m***utu4gsqs
 created_at: "2022-11-14T19:38:27Z"
 name: my-subnet-a
 description: my subnet first
-network_id: enp98mp53o1256icnbp3
+network_id: enp98m****6icnbp3
 zone_id: ru-central1-a
 v4_cidr_blocks:
   - 10.1.2.0/24
@@ -60,13 +60,14 @@ ivan@ivan-virtual-machine:~/packer$ yc vpc subnet list
 +----------------------+-------------+----------------------+----------------+---------------+---------------+
 |          ID          |    NAME     |      NETWORK ID      | ROUTE TABLE ID |     ZONE      |     RANGE     |
 +----------------------+-------------+----------------------+----------------+---------------+---------------+
-| e9bv2k91jb7cugg3f296 | my-subnet-a | enp98mp53o1256icnbp3 |                | ru-central1-a | [10.1.2.0/24] |
+| e9bv2*******ugg3f296 | my-subnet-a | enp98************bp3 |                | ru-central1-a | [10.1.2.0/24] |
 +----------------------+-------------+----------------------+----------------+---------------+---------------+
 
 ```
 Правим файл образа centos.json. Вставляем правильный folder_id и subnet_id   
-folder_id: b1g66m6nub69utu4gsqs  
-subnet_id: e9bv2k91jb7cugg3f296
+folder_id: b1g66****9utu4gsqs  
+subnet_id: e9bv2k******cugg3f296
+
 ```commandline
 ivan@ivan-virtual-machine:~/packer$ ./packer validate centos-7-base.json 
 The configuration is valid.
@@ -251,12 +252,12 @@ commands will detect it and remind you to do so if necessary.
 Создадим сервисный аккаунт 
 ```commandline
 ivan@ivan-virtual-machine:~/terrraform$ yc config list 
-token: y0_AgAAAAAAnCtRAATuwQAAAADSOzFrpVsZ1x10QCa1MM9_vjY876EfTJU
-cloud-id: b1grp5cvssfkb323pqkm
-folder-id: b1g66m6nub69utu4gsqs
+token: y0_*****************************_vjY876EfTJU
+cloud-id: b1grp****sfkb323pqkm
+folder-id: b1g6****69utu4gsqs
 compute-default-zone: ru-central1-a
 ivan@ivan-virtual-machine:~/terrraform$ yc iam service-account --folder-id ^Cist
-ivan@ivan-virtual-machine:~/terrraform$ yc iam service-account --folder-id b1g66m6nub69utu4gsqs list
+ivan@ivan-virtual-machine:~/terrraform$ yc iam service-account --folder-id b1g66****b69utu4gsqs list
 +----+------+
 | ID | NAME |
 +----+------+
@@ -274,15 +275,15 @@ name: sa-netology-terraform
 
 ```commandline
 ivan@ivan-virtual-machine:~/terrraform$ yc iam key create --service-account-id ajeqab1snruj88ragr4s --folder-name netology-swarm --output key_swarm.json 
-id: ajef6k0bgse2uung6p8g
-service_account_id: ajeqab1snruj88ragr4s
+id: ajef6k0****uung6p8g
+service_account_id: aje***snruj88ragr4s
 created_at: "2022-11-14T20:13:02.331500959Z"
 key_algorithm: RSA_2048
 
 ivan@ivan-virtual-machine:~/terrraform$ yc config profile create swarm-terraform
 Profile 'swarm-terraform' created and activated
 ivan@ivan-virtual-machine:~/terrraform$ yc config set service-account-key key_swarm.json 
-ivan@ivan-virtual-machine:~/terrraform$ yc config set cloud-id b1grp5cvssfkb323pqkm
+ivan@ivan-virtual-machine:~/terrraform$ yc config set cloud-id b1grp5c***fkb323pqkm
 ivan@ivan-virtual-machine:~/terrraform$ yc config set folder-id b1g66m6nub69utu4gsqs
 ivan@ivan-virtual-machine:~/terrraform$ export YC_TOKEN=$(yc iam create-token)
 ivan@ivan-virtual-machine:~/terrraform$ export YC_CLOUD_ID=$(yc config get cloud-id)
