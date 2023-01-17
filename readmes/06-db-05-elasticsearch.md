@@ -33,9 +33,11 @@ USER elasticsearch
 CMD ["/usr/sbin/init"]
 CMD ["/elasticsearch-8.6.0/bin/elasticsearch"]
 ```
-[elasticsearch.yml] [elasticsearch.yml](..%2Felastic%2Felasticsearch.yml)
+[elasticsearch.yml] [elasticsearch.yml](..%2Felastic%2Felasticsearch.yml)  
+
 Ссылка на репозиторий
-https://hub.docker.com/repository/docker/hovard777/elk/general
+https://hub.docker.com/repository/docker/hovard777/elk/general  
+
  Ответ от localhost:9200
 ```commandline
 name	"a43b94626a1c"
