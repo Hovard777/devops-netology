@@ -182,7 +182,8 @@ Remove index
   "acknowledged" : true
 }
 ```
-Индексы в статусе Yellow потому что у них указано число реплик, а по факту нет других серверов, соответственно реплицировать некуда.
+Индексы в статусе Yellow потому что у них указано число реплик, а по факту нет других серверов, соответственно реплицировать некуда.  
+
 3. Backup
 ```commandline
 [ifebres@febres-i elastic]$ curl -k -X POST -u elastic:SlNuNmu7tsVL8DkvCMRR https://localhost:9200/_snapshot/netology_backup?pretty -H 'Content-Type: application/json' -d'{"type": "fs", "settings": { "location":"/elasticsearch-8.6.0/snapshots" }}'
