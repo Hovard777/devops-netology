@@ -12,5 +12,12 @@ List of Resources https://github.com/hashicorp/terraform-provider-aws/blob/ef5f6
 >3. Какому регулярному выражению должно подчиняться имя?  
 
 1. ConflictsWith: []string{"name_prefix"} - https://github.com/hashicorp/terraform-provider-aws/blob/ef5f62e24b84a26c4f33031216424e739fe06b5b/internal/service/sqs/queue.go#L88  
-2.  
-3. 
+2.  Не могу найти. Можете помочь? 
+3.   
+```commandline
+                if fifoQueue {
+			re = regexp.MustCompile(`^[a-zA-Z0-9_-]{1,75}\.fifo$`)
+		} else {
+			re = regexp.MustCompile(`^[a-zA-Z0-9_-]{1,80}$`)
+		}
+```
