@@ -12,5 +12,5 @@ List of Resources https://github.com/hashicorp/terraform-provider-aws/blob/ef5f6
 >3. Какому регулярному выражению должно подчиняться имя?  
 
 1. ConflictsWith: []string{"name_prefix"} - https://github.com/hashicorp/terraform-provider-aws/blob/ef5f62e24b84a26c4f33031216424e739fe06b5b/internal/service/sqs/queue.go#L88  
-2. 
+2.  
 3. 
