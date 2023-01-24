@@ -130,4 +130,27 @@ root@447bfffbe878:/var/lib/postgresql/data# pg_dump -U postgres -d test_database
 root@447bfffbe878:/var/lib/postgresql/data# ls -la|grep test_pg
 -rw-r--r--. 1 root     root      4808 Jan 16 21:06 test_pg_database_dump.sql
 ```
-Чтобы добавить уникальность значения столбца ```title``` для таблиц ```test_database``` можно добавить индекс или первичный ключ. 
+Чтобы добавить уникальность значения столбца ```title``` для таблиц ```test_database``` можно воспользоваться несколькими вариантами. 
+создать уникальную связку 
+```
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_uniqe UNIQUE (id,title);
+ ```
+или составной первичный ключ 
+```
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    title character varying(80) NOT NULL,
+    price integer DEFAULT 0
+    PRIMARY KEY (id,title)
+);
+```
+или задать для столбца только уникальные значения 
+```
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    title character varying(80) NOT NULL,
+    price integer DEFAULT 0
+    UNIQUE (title)
+);
+```
